@@ -1,0 +1,13 @@
+USE banque_demo;
+SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+START TRANSACTION;
+SELECT solde FROM compte WHERE id = 1;
+
+-- Étape 7 – Verrous explicites
+
+-- Session 1 : Verrouille la ligne d'Alice
+START TRANSACTION;
+START TRANSACTION;
+SELECT * FROM compte WHERE id = 1 FOR UPDATE;
+
+COMMIT;
